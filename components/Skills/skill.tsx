@@ -6,7 +6,7 @@ import { SiNextdotjs, SiTypescript, SiJavascript } from "react-icons/si";
 import { AiFillHtml5 } from "react-icons/ai";
 import { FaCss3Alt, FaReact } from "react-icons/fa";
 
-function Skill(props) {
+function Skill(props: any) {
   return (
     <>
       <div className="col-span-6">

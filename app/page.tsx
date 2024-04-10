@@ -6,7 +6,7 @@ import ServiceList from "@/components/Service/service";
 import SkillList from "@/components/Skills/skill";
 import Intrested from "@/components/Intrested/intrested";
 import Work from "@/components/Work/work";
-import Testimonial from "@/components/Testimonial/testimonial";
+// import Testimonial from "@/components/Testimonial/testimonial";
 import Contact from "@/components/Contact/contact";
 import Footer from "@/components/Footer/footer";
 

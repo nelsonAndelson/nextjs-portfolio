@@ -13,6 +13,7 @@ import Menu from "./Menu";
 export default function Header() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,10 +21,30 @@ export default function Header() {
       setIsScrolled(position > 200);
     };
 
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '-100px 0px -100px 0px'
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    document.querySelectorAll('section[id]').forEach(section => {
+      observer.observe(section);
+    });
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
     };
   }, []);
 
@@ -71,6 +92,7 @@ export default function Header() {
                     id={val.id}
                     name={val.name}
                     link={val.scroll_link}
+                    isActive={activeSection === val.scroll_link.replace('#', '')}
                   />
                 );
               })}

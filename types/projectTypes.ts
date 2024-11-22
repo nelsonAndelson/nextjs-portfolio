@@ -12,6 +12,7 @@ export interface IProjectDetails {
   description: string;
   subDescription: string;
   images: string[];
+  liveUrl: string;
   details: {
     title: string;
     description: string;

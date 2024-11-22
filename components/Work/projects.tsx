@@ -10,7 +10,7 @@ export const projectDetails: IProjectDetails[] = [
     images: [
       "/img/project-1.jpg",
       "/img/project-3.jpg",
-      "/img/project-4.png",
+      "/img/project-5.jpg",
       "/img/project-2.jpg",
     ],
     details: [
@@ -27,9 +27,11 @@ export const projectDetails: IProjectDetails[] = [
         description: "Squarespace, FaceBook and Instagram Ads",
       },
     ],
+    liveUrl: "https://nelsondigitechnology.com",
   },
   {
     sourceCode: "https://github.com/nelsonAndelson/nelson-nextjs-ts-blog",
+    liveUrl: "https://nelson-nextjs-ts-blog.vercel.app/",
     title: "Personal Blog Website Built With Nextjs and Sanity CMS",
     description:
       "This project showcases my personal blog, developed using Next.js for efficient server-side rendering that boosts SEO and page speeds, paired with TypeScript for robust, maintainable code. I integrated Sanity CMS to manage dynamic content updates seamlessly. The blog features real-time post updates, customizable editing capabilities, and leverages Next.js's dynamic routing for serving articles. ",

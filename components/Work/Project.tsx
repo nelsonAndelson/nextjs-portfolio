@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FaTimes, FaGithub } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import { IProjectDetails } from "@/types/projectTypes";
 
@@ -57,13 +57,24 @@ export default function ProjectDetails(props: {
 
               <section>
                 <Link
-                  href={`${props.projectDetails.sourceCode}`}
-                  target="blank"
-                  className="px-btn px-btn-theme mr-4"
+                  href={props.projectDetails.sourceCode || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => !props.projectDetails.sourceCode && e.preventDefault()}
+                  className={`px-btn px-btn-theme mr-4 ${
+                    !props.projectDetails.sourceCode ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
+                  }`}
                 >
                   Source Code
                 </Link>
-                <button className="px-btn px-btn-theme">Live URL</button>
+                <Link
+                  href={`${props.projectDetails.liveUrl}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-btn px-btn-theme"
+                >
+                  Live URL
+                </Link>
               </section>
             </div>
             <button className="px-close" onClick={props.closePopup}>

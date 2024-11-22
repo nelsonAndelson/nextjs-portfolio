@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { MenuProps } from "@/types/headerTypes";
 
-function Menu(props: any) {
-  const { isActive, setIsActive } = props;
+function Menu({ id, name, link, isActive }: MenuProps) {
+
+
   return (
     <li>
-      <Link data-scroll-nav={props.id} href={props.link} className="active">
-        <span>{props.name}</span>
+      <Link href={link} className={`nav-link px-3 py-2 ${isActive ? 'active' : ''}`}>
+        {name}
       </Link>
     </li>
   );
 }
-
 export default Menu;
+

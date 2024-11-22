@@ -60,7 +60,7 @@ export default function Work() {
                     <div className="btn-bar">
                       <button
                         className="px-btn px-btn-theme px_modal"
-                        onClick={() => setShowModal(2)}
+                        onClick={() => setShowModal(index + 1)}
                       >
                         View Project{" "}
                       </button>

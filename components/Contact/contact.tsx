@@ -4,21 +4,38 @@ import React, { useRef, useState } from "react";
 import { AiFillGithub } from "react-icons/ai";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
+import { useToast } from "@/hooks/use-toast"
+import { FormErrors } from "@/types/formTypes";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  user_name: z.string().min(1, "Name is required"),
+  user_email: z.string().min(1, "Email is required").email("Invalid email"),
+  user_subject: z.string().min(1, "Subject is required"),
+  message: z.string().min(1, "Message is required"),
+});
+
 /*--------------------
 * Contact Section
 ----------------------*/
 
+
+
 export default function Contact() {
+    const { toast } = useToast()
+
   const initialFormState = {
-    name: "",
-    email: "",
-    subject: "",
+    user_name: "",
+    user_email: "",
+    user_subject: "",
     message: "",
   };
 
   const [formData, setFormData] = useState(initialFormState);
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useRef<HTMLFormElement>(null);
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
@@ -28,8 +45,69 @@ export default function Contact() {
     }));
     setFormErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: value.trim() === "" ? "Please fill this field" : "",
+      [name]: value.trim() === "" ? ["Please fill this field"] : [],
     }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Validate form data
+    const formValues = {
+      user_name: form.current?.user_name.value,
+      user_email: form.current?.user_email.value,
+      user_subject: form.current?.user_subject.value,
+      message: form.current?.message.value,
+    };
+
+    const result = contactSchema.safeParse(formValues);
+    
+    if (!result.success) {
+      const errors = result.error.flatten().fieldErrors;
+      setFormErrors(errors);
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields correctly.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    emailjs
+      .sendForm(
+        'service_ivue7qg', 
+        'template_af9stjf', 
+        form.current as HTMLFormElement,
+        'HBF2TH4vUhSDWi1Ea' 
+      )
+      .then(
+        (result) => {
+          console.log('SUCCESS!', result.text);
+          setFormData(initialFormState);
+          setFormErrors({});
+          if (form.current) {
+            form.current.reset();
+          }
+          toast({
+            title: "Success!",
+            description: "Your message has been sent successfully.",
+            variant: "default",
+          });
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          toast({
+            title: "Error",
+            description: "Failed to send message. Please try again.",
+            variant: "destructive",
+          });
+        }
+      )
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -56,7 +134,12 @@ export default function Contact() {
                   Our friendly team would love to hear from you.
                 </p>
 
-                <form id="contact-form" method="POST">
+                <form
+                  ref={form as React.RefObject<HTMLFormElement>}
+                  id="contact-form"
+                  method="POST"
+                  onSubmit={handleSubmit}
+                >
                   <div className="grid grid-cols-12 gap-3">
                     <div className="col-span-12 md:col-span-6">
                       <div className="form-group">
@@ -65,10 +148,17 @@ export default function Contact() {
                           name="user_name"
                           id="name"
                           placeholder="Name *"
-                          className="form-control"
+                          className={`form-control ${formErrors.user_name ? 'border-red-500' : ''} ${
+                            isSubmitting ? 'opacity-60 cursor-not-allowed' : ''
+                          }`}
                           type="text"
                           onChange={handleChange}
+                          disabled={isSubmitting}
+                          value={formData.user_name}
                         />
+                        {formErrors.user_name && (
+                          <span className="text-red-500 text-sm">{formErrors.user_name[0]}</span>
+                        )}
                       </div>
                     </div>
                     <div className="col-span-12 md:col-span-6">
@@ -78,10 +168,15 @@ export default function Contact() {
                           name="user_email"
                           id="email"
                           placeholder="Email *"
-                          className="form-control"
+                          className={`form-control ${formErrors.user_email ? 'border-red-500' : ''}`}
                           type="email"
                           onChange={handleChange}
+                          disabled={isSubmitting}
+                          value={formData.user_email}
                         />
+                        {formErrors.user_email && (
+                          <span className="text-red-500 text-sm">{formErrors.user_email[0]}</span>
+                        )}
                       </div>
                     </div>
                     <div className="col-span-12">
@@ -91,10 +186,15 @@ export default function Contact() {
                           name="user_subject"
                           id="subject"
                           placeholder="Subject *"
-                          className="form-control"
+                          className={`form-control ${formErrors.user_subject ? 'border-red-500' : ''}`}
                           type="text"
                           onChange={handleChange}
+                          disabled={isSubmitting}
+                          value={formData.user_subject}
                         />
+                        {formErrors.user_subject && (
+                          <span className="text-red-500 text-sm">{formErrors.user_subject[0]}</span>
+                        )}
                       </div>
                     </div>
                     <div className="col-span-12">
@@ -105,9 +205,14 @@ export default function Contact() {
                           id="message"
                           placeholder="Your message *"
                           rows={4}
-                          className="form-control"
+                          className={`form-control ${formErrors.message ? 'border-red-500' : ''}`}
                           onChange={handleChange}
+                          disabled={isSubmitting}
+                          value={formData.message}
                         ></textarea>
+                        {formErrors.message && (
+                          <span className="text-red-500 text-sm">{formErrors.message[0]}</span>
+                        )}
                       </div>
                     </div>
                     <div className="col-span-12">
@@ -115,10 +220,9 @@ export default function Contact() {
                         <button
                           className="px-btn px-btn-theme2"
                           type="submit"
-                          value="Send"
+                          disabled={isSubmitting}
                         >
-                          {" "}
-                          Send Message
+                          {isSubmitting ? "Sending..." : "Send Message"}
                         </button>
                       </div>
                     </div>
@@ -159,9 +263,9 @@ export default function Contact() {
                       <h5>Mail</h5>
                       <Link
                         className="text-[#fefefe] underline hover:text-[#fff] hover:no-underline"
-                        href="#"
+                        href="mailto:nelsonbaguma08@gmail.com"
                       >
-                        contact@nelsonbaguma.com
+                        nelsonbaguma08@gmail.coms
                       </Link>
                     </div>
                   </li>

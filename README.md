@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio
+A modern, responsive portfolio website built with Next.js 14 and TypeScript, showcasing my projects and professional experience. This portfolio demonstrates my expertise in modern web development practices and attention to design detail.
+
+![Portfolio Screenshot](/public/img/portfolio.png)
+
+## Features
+- **Modern Stack Implementation**: Built with Next.js 14 and TypeScript, demonstrating strong typing and modern React patterns
+- **Server Actions**: Implemented Next.js server actions for form handling, showcasing full-stack capabilities
+- **Form Validation**: Custom form validation using Zod schema validation
+- **Responsive Design**: Mobile-first approach ensuring perfect display across all devices
+- **Smooth Animations**: Implemented with Framer Motion for enhanced user experience
+- **Dark Mode**: System-preferred and user-selected theme support
+- **Performance Optimized**: Achieved excellent Lighthouse scores through Next.js best practices
+
+## Technologies Used
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Zod Validation
+- React Email
+- Resend
+- Server Actions
+- CSS Variables
+- React Context
 
 ## Getting Started
 
-First, run the development server:
-
+### Prerequisites
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node >= 18.17.0
+npm >= 9.x.x
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/[your-username]/portfolio.git
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Set up environment variables
+cp .env.example .env.local
 
-## Learn More
+# Start development server
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
+```
+├── app/                
+│   ├── components/     # Reusable UI components
+│   ├── sections/       # Main portfolio sections
+│   ├── lib/           # Utility functions and configurations
+│   └── api/           # API endpoints
+├── public/            # Static assets and images
+└── styles/           # Global styles and Tailwind configuration
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technical Highlights
+- **Type Safety**: Leveraged TypeScript for enhanced code reliability and developer experience
+- **Server Actions**: Implemented secure form handling without exposing API endpoints
+- **Email Integration**: Set up automated email sending using React Email and Resend
+- **Responsive Images**: Optimized image loading using Next.js Image component
+- **CSS Architecture**: Utilized Tailwind CSS with custom configurations for consistent styling
+- **State Management**: Implemented context-based theme management
+- **Performance**: Optimized for Core Web Vitals with excellent Lighthouse scores
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Key Learnings
+Through building this portfolio, I gained hands-on experience with:
+- Modern React patterns and Next.js 14 features
+- TypeScript implementation in a real-world project
+- Form validation and submission best practices
+- Animation implementation with Framer Motion
+- Responsive design principles
+- Performance optimization techniques
+- SEO best practices
 
-## Deploy on Vercel
+## Future Improvements
+- Implement blog section with MDX
+- Add internationalization support
+- Enhance accessibility features
+- Add more interactive animations
+- Implement project filtering system
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
+Nelson Baguma
+- GitHub: [Your GitHub Profile](https://github.com/nelsonAndelson)
+- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/baguma-nelson-a7bb94146/)
+- Email: nelsonbaguma08@gmail.com
+- Portfolio: https://nelson-baguma.vercel.app/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+*Built with Next.js 14 and ❤️*

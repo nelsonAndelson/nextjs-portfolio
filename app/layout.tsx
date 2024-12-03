@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from '@vercel/analytics/next';
 import { Jost } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
@@ -17,8 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={jost.className}>{children}
+      <body className={jost.className}>
+        {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );

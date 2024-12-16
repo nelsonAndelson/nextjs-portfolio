@@ -128,6 +128,15 @@
   @apply bg-[#D2CEFF];
 }
 
+.bg-7 { 
+  @apply bg-[#336791]/10 text-[#336791];  /* PostgreSQL blue */
+}
+.bg-8 { 
+  @apply bg-[#412991]/10 text-[#412991];  /* OpenAI purple */
+}
+.bg-9 { 
+  @apply bg-[#EC4899]/10 text-[#EC4899];  /* LangChain pink */
+}
 /* Header
 ------------------------------*/
 .main-header .navbar li {

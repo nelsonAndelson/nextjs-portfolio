@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
 import Menu from "./Menu";
 
 /*--------------------
@@ -49,11 +49,11 @@ export default function Header() {
   }, []);
 
   const header_menus = [
-    { id: 0, name: "Home", scroll_link: "#home" },
-    { id: 1, name: "Services", scroll_link: "#services" },
-    { id: 2, name: "Skills", scroll_link: "#skill" },
-    { id: 3, name: "Portfolio", scroll_link: "#portfolio" },
-    { id: 4, name: "Contact", scroll_link: "#contactus" },
+    { id: 0, name: "Home", scroll_link: "home" },
+    { id: 1, name: "Services", scroll_link: "services" },
+    { id: 2, name: "Skills", scroll_link: "skill" },
+    { id: 3, name: "Projects", scroll_link: "projects" },
+    { id: 4, name: "Contact", scroll_link: "contactus" },
   ];
   return (
     <>
@@ -64,14 +64,14 @@ export default function Header() {
       >
         <div className="container flex items-center justify-between one-page-nav relative py-5 lg:py-3">
           <div className="logo">
-            <Link href="#home">
+            <ScrollLink to="home" smooth={true} duration={500} className="cursor-pointer">
               <img
                 src="img/nelson-logo2.svg"
                 title="Logo"
                 alt="Logo"
                 className="w-full h-[35px] cursor-pointer"
               />
-            </Link>
+            </ScrollLink>
           </div>
           <button
             className="lg:hidden mobile_toggle w-[40px] flex flex-col"
@@ -99,13 +99,14 @@ export default function Header() {
             </ul>
           </div>
           <div className="ms-auto hidden lg:flex">
-            <Link
-              className="px-btn px-btn-theme"
-              data-scroll-nav="4"
-              href="#contactus"
+            <ScrollLink
+              to="contactus"
+              smooth={true}
+              duration={500}
+              className="px-btn px-btn-theme cursor-pointer"
             >
               LET'S CONNECT! 😄
-            </Link>
+            </ScrollLink>
           </div>
         </div>
       </header>

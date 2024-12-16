@@ -1,10 +1,10 @@
 import {
-  FaColumns,
-  FaLaptopCode,
-  FaGlobe,
+  FaReact,
+  FaRobot,
+  FaPython,
+  FaCogs,
   FaDatabase,
-  FaMagic,
-  FaChartLine,
+  FaSitemap,
 } from "react-icons/fa";
 
 /*--------------------
@@ -39,40 +39,40 @@ function Service(props: {
 export default function ServiceList() {
   const service_list = [
     {
-      id: { main: "bg-1", icon: <FaColumns /> },
-      title: "Responsive Web Design",
+      id: { main: "bg-1", icon: <FaReact /> },
+      title: "Full-Stack Next.js Development",
       description:
-        "I specialize in responsive web design for a seamless cross-device user experience.",
+        "Building modern web applications with Next.js, React, and TypeScript. Focused on creating responsive, server-rendered applications with clean APIs.",
     },
     {
-      id: { main: "bg-2", icon: <FaLaptopCode /> },
-      title: "Development",
+      id: { main: "bg-2", icon: <FaRobot /> },
+      title: "AI Integration & Development",
       description:
-        "I create cutting-edge web apps to solve real-world problems, following the latest industry standards and technologies.",
+        "Exploring and implementing AI solutions using LangChain and Ollama. Currently learning to build practical AI applications that solve real business problems.",
     },
     {
-      id: { main: "bg-3", icon: <FaGlobe /> },
-      title: "SEO Marketing",
+      id: { main: "bg-3", icon: <FaPython /> },
+      title: "Python Backend Development",
       description:
-        "I provide SEO marketing services to enhance your online visibility and reach your target audience effectively.",
+        "Developing Python backends and APIs while expanding my knowledge in microservices architecture and efficient data processing patterns.",
     },
     {
-      id: { main: "bg-4", icon: <FaDatabase /> },
-      title: "Database Management",
+      id: { main: "bg-4", icon: <FaCogs /> },
+      title: "AI-Powered Automation",
       description:
-        "I provide end-to-end database support to keep your data organized, secure, and easily accessible, offering solutions tailored to your unique needs.",
+        "Learning to build AI agents and automation tools. Excited about combining traditional automation with modern LLM capabilities.",
     },
     {
-      id: { main: "bg-5", icon: <FaChartLine /> },
-      title: "Performance Optimization",
+      id: { main: "bg-5", icon: <FaDatabase /> },
+      title: "Database Solutions",
       description:
-        "Boost your website's speed for better user engagement, conversions, and online success.",
+        "Working with SQL and NoSQL databases, while exploring vector databases for AI applications. Focused on building efficient and scalable data solutions.",
     },
     {
-      id: { main: "bg-6", icon: <FaMagic /> },
-      title: "UI/UX Design",
+      id: { main: "bg-6", icon: <FaSitemap /> },
+      title: "Solution Architecture",
       description:
-        "I provide UI/UX design services to create visually appealing and user-friendly web experiences.",
+        "Designing full-stack applications with a growing focus on AI integration. Learning to balance functionality, scalability, and maintainability.",
     },
   ];
   return (

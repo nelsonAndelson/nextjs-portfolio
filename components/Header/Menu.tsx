@@ -1,16 +1,28 @@
-import Link from "next/link";
-import { MenuProps } from "@/types/headerTypes";
+"use client";
+import { Link } from "react-scroll";
 
-function Menu({ id, name, link, isActive }: MenuProps) {
+interface MenuProps {
+  id: number;
+  name: string;
+  link: string;
+  isActive: boolean;
+}
 
-
+export default function Menu({ name, link, isActive }: MenuProps) {
   return (
     <li>
-      <Link href={link} className={`nav-link px-3 py-2 ${isActive ? 'active' : ''}`}>
+      <Link
+        to={link}
+        smooth={true}
+        duration={500}
+        offset={-100}
+        spy={true}
+        activeClass="active"
+        className={`cursor-pointer ${isActive ? 'active' : ''}`}
+      >
         {name}
       </Link>
     </li>
   );
 }
-export default Menu;
 
